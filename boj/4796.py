@@ -1,26 +1,10 @@
-import heapq
-n = int(input())
-
-class_list = []
-for i in range(n):
-    start, ending = map(int, input().split())
-    class_list.append((start, ending))
-
-class_list.sort()
-
-apply_list = [] 
-for i in range(n):
-    start, ending = class_list[i]
-    is_adopt = False
-    for j in range(len(apply_list)):
-        smallest = heapq.heappop(apply_list)
-        if smallest <= start:
-            heapq.heappush(apply_list, ending)
-            is_adopt = True
-            break
-        else:
-            heapq.heappush(apply_list, smallest)
-    if not is_adopt:
-        heapq.heappush(apply_list, ending)
-
-print(len(apply_list))
+case_num = 1
+while True:
+    l, p, v = map(int, input().split())
+    if l == 0 and p == 0 and v == 0:
+        break
+    
+    cont = v//p
+    left = min(v - (p*cont), l)
+    print('Case ' + str(case_num) + ': ' + str(l * (v//p) + left))
+    case_num += 1
